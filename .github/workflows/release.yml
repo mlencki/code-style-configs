@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Check-out github repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
       - name: Check if package code has changed
         uses: marceloprado/has-changed-path@v1
