@@ -11,6 +11,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build Docker containers
         run: docker-compose up -d --build
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: docker-compose run php composer install --prefer-dist --no-progress --no-suggest
       - name: Run code style checker
