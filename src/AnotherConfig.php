@@ -11,6 +11,6 @@ class AnotherConfig extends Config
     protected array $sets = [
         SetList::SPACES,
         SetList::ARRAY,
-        SetList::DOCBLOCK,
+        SetList::DOCBLOCK
     ];
 }
