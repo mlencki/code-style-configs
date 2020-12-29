@@ -8,6 +8,8 @@ jobs:
   draft-release:
     runs-on: ubuntu-latest
     steps:
+      - name: Check-out github repository
+        uses: actions/checkout@v2
 
       - name: Check if package code has changed
         uses: marceloprado/has-changed-path@v1
