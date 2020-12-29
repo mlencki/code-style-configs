@@ -14,6 +14,6 @@ jobs:
       - name: Install Composer dependencies
         run: docker-compose run php composer install --prefer-dist --no-progress --no-suggest
       - name: Run code style checker
-        run: docker-compose run php composer tests
+        run: docker-compose run php composer ecs
       - name: Run tests
         run: docker-compose run php composer tests
