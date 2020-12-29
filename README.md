@@ -1,4 +1,4 @@
-## Simple wrapper for ecs config
+# Simple wrapper for ecs config
 
 ## Installation
 
