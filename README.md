@@ -24,3 +24,20 @@ $config->addSet(SetList::PHPUNIT);
 
 return $config->get();
 ```
+
+## Local development
+
+Install composer dependencies:
+```bash
+docker-compose run php composer install
+```
+
+Running code style checks:
+```bash
+docker-compose run php composer ecs
+```
+
+Running tests:
+```bash
+docker-compose run php composer tests
+```

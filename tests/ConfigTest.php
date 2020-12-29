@@ -53,6 +53,7 @@ class ConfigTest extends TestCase
 
         $this->assertSame(
             [
+                SetList::COMMON,
                 SetList::SPACES,
                 SetList::ARRAY,
                 SetList::DOCBLOCK,
