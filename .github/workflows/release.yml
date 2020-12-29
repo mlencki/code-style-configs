@@ -1,4 +1,4 @@
-name: Release
+name: Create Draft Release
 
 on:
   push:
@@ -8,7 +8,15 @@ jobs:
   draft-release:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Check if package code has changed
+        uses: marceloprado/has-changed-path@v1
+        id: has-changed
+        with:
+          paths: src
+
       - name: Create Draft Release
+        if: steps.has-changed.outputs.changed == 'true'
         uses: zendesk/action-create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
