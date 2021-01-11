@@ -9,7 +9,6 @@ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 class DefaultConfig extends Config
 {
     protected array $sets = [
-        SetList::COMMON,
         SetList::SPACES,
         SetList::ARRAY,
         SetList::DOCBLOCK,
