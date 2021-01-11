@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use MLencki\EcsConfig\Config;
 use MLencki\EcsConfig\DefaultConfig;
+use MLencki\EcsConfig\Laravel\Config as LaravelConfig;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\Basic\BracesFixer;
 use PhpCsFixer\Fixer\Semicolon\MultilineWhitespaceBeforeSemicolonsFixer;
@@ -69,6 +70,44 @@ class ConfigTest extends TestCase
         );
         $this->assertSame([], $this->callProtectedMethod($config, 'getSkips'));
         $this->assertSame([], $this->callProtectedMethod($config, 'getPaths'));
+        $this->assertIsCallable($config->get());
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testLaravelConfigIsConfiguredAsExpected(): void
+    {
+        $config = new LaravelConfig();
+
+        $this->assertSame(
+            [
+                SetList::SPACES,
+                SetList::ARRAY,
+                SetList::DOCBLOCK,
+                SetList::NAMESPACES,
+                SetList::CONTROL_STRUCTURES,
+                SetList::COMMENTS,
+                SetList::DEAD_CODE,
+                SetList::CLEAN_CODE,
+                SetList::PSR_12,
+                SetList::PHP_70,
+                SetList::PHP_71,
+            ],
+            $this->callProtectedMethod($config, 'getSets')
+        );
+        $this->assertSame([], $this->callProtectedMethod($config, 'getSkips'));
+        $this->assertSame(
+            [
+                'app',
+                'bootstrap',
+                'config',
+                'database',
+                'public',
+                'routes',
+            ],
+            $this->callProtectedMethod($config, 'getPaths')
+        );
         $this->assertIsCallable($config->get());
     }
 
