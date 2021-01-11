@@ -1,4 +1,4 @@
-# Simple wrapper for [symplify/easy-coding-standard](https://github.com/symplify/easy-coding-standard) config
+# Simple wrapper for [easy-coding-standard](https://github.com/symplify/easy-coding-standard) config
 
 ## Installation
 

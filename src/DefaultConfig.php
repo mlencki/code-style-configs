@@ -23,5 +23,5 @@ class DefaultConfig extends Config
         SetList::PHP_71,
     ];
 
-    
+
 }
