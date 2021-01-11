@@ -13,7 +13,7 @@ jobs:
         continue-on-error: true
       - name: Build Docker containers
         run: docker-compose up -d --build
-      - name: Cache composer dependencies
+      - name: Cache Composer dependencies
         uses: actions/cache@v2
         with:
           path: vendor

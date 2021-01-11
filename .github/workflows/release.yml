@@ -2,7 +2,10 @@ name: Create Draft Release
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+    paths:
+      - src
 
 jobs:
   draft-release:
@@ -10,17 +13,8 @@ jobs:
     steps:
       - name: Check-out github repository
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
-
-      - name: Check if package code has changed
-        uses: marceloprado/has-changed-path@v1
-        id: has-changed
-        with:
-          paths: src
 
       - name: Create Draft Release
-        if: steps.has-changed.outputs.changed == 'true'
         uses: zendesk/action-create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
