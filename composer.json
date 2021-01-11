@@ -2,6 +2,7 @@
     "name": "mlencki/ecs-config",
     "type": "library",
     "description": "Simple wrapper for ecs config.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Mateusz Lencki",

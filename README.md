@@ -1,4 +1,4 @@
-# Simple wrapper for ecs config
+# Simple wrapper for [symplify/easy-coding-standard](https://github.com/symplify/easy-coding-standard) config
 
 ## Installation
 
