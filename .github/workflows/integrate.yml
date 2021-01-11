@@ -8,7 +8,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Check-out GitHub repository
+        uses: actions/checkout@v2
 
       - name: Cache Docker layers
         uses: satackey/action-docker-layer-caching@v0.0.11
