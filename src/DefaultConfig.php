@@ -15,7 +15,6 @@ class DefaultConfig extends Config
         SetList::NAMESPACES,
         SetList::CONTROL_STRUCTURES,
         SetList::COMMENTS,
-        SetList::DEAD_CODE,
         SetList::CLEAN_CODE,
         SetList::PSR_12,
         SetList::PHP_70,
