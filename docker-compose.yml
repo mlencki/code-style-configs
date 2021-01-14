@@ -1,8 +1,9 @@
 version: "3.7"
 
 services:
+
   php:
-    container_name: ecs-config-php
+    container_name: code-style-config
     image: ghcr.io/mlencki/php:8.0-cli
     working_dir: /application
     volumes:

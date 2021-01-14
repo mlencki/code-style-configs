@@ -2,75 +2,75 @@
 
 declare(strict_types=1);
 
-namespace MLencki\EcsConfig;
+namespace MLencki\CodeStyle;
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 
-class Config
+class Config implements CodeStyleConfig
 {
-    protected array $sets = [];
+    protected array $options = [];
 
-    protected array $skips = [];
-
-    protected array $paths = [];
+    public function __construct()
+    {
+        $this->scanPaths([]);
+        $this->useSets([]);
+        $this->skipSniffs([]);
+    }
 
     public function get(): callable
     {
-        $sets = $this->getSets();
-        $skips = $this->getSkips();
-        $paths = $this->getPaths();
+        $options = $this->options;
 
-        return static function (ContainerConfigurator $containerConfigurator) use ($sets, $skips, $paths): void {
+        return static function (ContainerConfigurator $containerConfigurator) use ($options): void {
             $parameters = $containerConfigurator->parameters();
-            $parameters->set(Option::SETS, $sets);
-            $parameters->set(Option::SKIP, $skips);
-            $parameters->set(Option::PATHS, $paths);
+
+            foreach ($options as $name => $value) {
+                $parameters->set($name, $value);
+            }
         };
     }
 
-    public function setSets(array $sets): void
+    public function setOption(string $name, mixed $value): void
     {
-        $this->sets = $sets;
+        $this->options[$name] = $value;
     }
 
-    public function addSet(string $set): void
+    /**
+     * @return mixed[]
+     */
+    public function getOptions(): array
     {
-        $this->sets[] = $set;
+        return $this->options;
     }
 
-    public function setSkips(array $skips): void
+    public function scanPaths(array $paths): void
     {
-        $this->skips = $skips;
+        $this->options[Option::PATHS] = $paths;
     }
 
-    public function addSkip(string $skip): void
+    public function useSets(array $sets): void
     {
-        $this->skips[] = $skip;
+        $this->options[Option::SETS] = $sets;
     }
 
-    public function setPaths(array $paths): void
+    public function skipSniffs(array $sniffs): void
     {
-        $this->paths = $paths;
+        $this->options[Option::SKIP] = $sniffs;
     }
 
     public function addPath(string $path): void
     {
-        $this->paths[] = $path;
+        $this->options[Option::PATHS][] = $path;
     }
 
-    protected function getSets(): array
+    public function addSet(string $set): void
     {
-        return $this->sets;
+        $this->options[Option::SETS][] = $set;
     }
 
-    protected function getSkips(): array
+    public function addSkip(string $sniff): void
     {
-        return $this->skips;
-    }
-
-    protected function getPaths(): array
-    {
-        return $this->paths;
+        $this->options[Option::SKIP][] = $sniff;
     }
 }
