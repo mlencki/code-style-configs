@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-use MLencki\EcsConfig\DefaultConfig;
-use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
+use MLencki\CodeStyle\EasyCodingStandard\Config;
 
-$config = new DefaultConfig();
-$config->setPaths(['ecs.php', 'src', 'tests']);
-$config->addSet(SetList::PHPUNIT);
+$config = new Config();
+$config->scanPaths(['src', 'tests', 'ecs.php', 'rector.php']);
+$config->checkPhpUnit();
 
 return $config->get();
